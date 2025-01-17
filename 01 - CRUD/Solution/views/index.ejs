@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Example App</title>
+</head>
+<body>
+  <h1>Examples</h1>
+  <ul>
+    <% examples.forEach(example => { %>
+      <li>
+        <strong><%= example.name %></strong>: <%= example.description || "No description" %>
+        <form action="/edit/<%= example._id %>" method="POST" style="display:inline;">
+          <input type="text" name="name" value="<%= example.name %>" required>
+          <input type="text" name="description" value="<%= example.description %>" placeholder="description">
+          <button type="submit">Update</button>
+        </form>
+        <form action="/delete/<%= example._id %>" method="POST" style="display:inline;">
+          <button type="submit">Delete</button>
+        </form>
+      </li>
+    <% }) %>
+  </ul>
+  <h2>Add a New Example</h2>
+  <form action="/" method="POST">
+    <input type="text" name="name" placeholder="Name" required>
+    <input type="text" name="description" placeholder="Description">
+    <button type="submit">Add</button>
+  </form>
+</body>
+</html>
